@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -14,6 +14,17 @@ export const Navbar = () => {
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <header className="site-header">
@@ -88,9 +99,10 @@ export const Navbar = () => {
 
           <button
             type="button"
-            className="nav-cell nav-icon-cell nav-hamburger-btn"
+            className={`nav-cell nav-icon-cell nav-hamburger-btn ${mobileMenuOpen ? 'open' : ''}`}
             id="nav-toggle"
             aria-label="Menu mobile"
+            aria-expanded={mobileMenuOpen}
             onClick={toggleMobileMenu}
           >
             <span className="bar"></span>
@@ -98,6 +110,13 @@ export const Navbar = () => {
           </button>
         </div>
       </nav>
+
+      {/* Backdrop sombre pour fermer le menu au clic extérieur */}
+      <div
+        className={`nav-backdrop ${mobileMenuOpen ? 'active' : ''}`}
+        onClick={closeMobileMenu}
+        aria-hidden="true"
+      />
     </header>
   );
 };
