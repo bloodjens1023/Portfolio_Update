@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio | Développeur Web</title>
+    <meta name="description" content="Portfolio simple, moderne et responsive">
+    <link rel="stylesheet" href="style.css">
+    <!-- Police Google Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Canvas 3D d'arrière-plan interactif (particules) -->
+    <canvas id="bg-3d"></canvas>
+
+    <!-- Curseur interactif lumineux -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- En-tête / Navigation - Style ArtCraft (Cellules techniques HUD) -->
+    <header class="site-header">
+        <nav class="site-nav">
+            <!-- Section Gauche : Logo et Liens en grille -->
+            <div class="nav-left">
+                <a href="#hero" class="nav-cell nav-logo-cell">
+                    <span class="logo-symbol">✦</span>
+                    <span class="logo-title">Jenny<span class="logo-accent">.dev</span></span>
+                </a>
+                <div class="nav-links-wrapper" id="nav-menu">
+                    <a href="#about" class="nav-cell nav-item-link">
+                        <span class="hud-pill" data-i18n="nav_about">À propos</span>
+                    </a>
+                    <a href="#education" class="nav-cell nav-item-link">
+                        <span class="hud-pill" data-i18n="nav_education">Formation</span>
+                    </a>
+                    <a href="#skills" class="nav-cell nav-item-link">
+                        <span class="hud-pill" data-i18n="nav_skills">Compétences</span>
+                    </a>
+                    <a href="#projects" class="nav-cell nav-item-link">
+                        <span class="hud-pill" data-i18n="nav_projects">Projets</span>
+                    </a>
+                    <a href="#contact" class="nav-cell nav-item-link">
+                        <span class="hud-pill" data-i18n="nav_contact">Contact</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Section Droite : Réseaux, Thème, Langue & Bouton d'action -->
+            <div class="nav-right">
+                <a href="https://github.com/bloodjens1023" target="_blank" rel="noopener noreferrer" class="nav-cell nav-icon-cell" aria-label="GitHub" title="GitHub">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="nav-icon-svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
+                </a>
+                <button type="button" class="nav-cell nav-icon-cell theme-toggle-btn" id="theme-toggle" aria-label="Changer de thème" title="Changer de thème">
+                    <span id="theme-icon">🌙</span>
+                </button>
+                <button type="button" class="nav-cell nav-icon-cell lang-toggle-btn" id="lang-toggle" aria-label="Changer de langue (FR / EN)" title="Switch language (FR / EN)">
+                    <span id="lang-indicator">EN</span>
+                </button>
+                <a href="#contact" class="nav-cell nav-action-btn">
+                    <span data-i18n="nav_cta">Me Contacter</span>
+                </a>
+                <button type="button" class="nav-cell nav-icon-cell nav-hamburger-btn" id="nav-toggle" aria-label="Menu mobile">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section Accueil / Hero -->
+        <section class="hero section" id="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge" data-i18n="hero_badge">Disponible pour de nouvelles opportunités</span>
+                    <h1 class="hero-title" data-i18n="hero_title">Bonjour, je suis <span class="highlight">Jenny Fandresena</span></h1>
+                    <p class="hero-subtitle" data-i18n="hero_subtitle">
+                        Développeur Web Full-Stack passionné &bull; Actuellement en <strong>Master 2 Informatique</strong> à l'<strong>Université ITU Madagascar</strong> (préparation de mémoire).
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary" data-i18n="hero_btn_projects">Voir mes réalisations</a>
+                        <a href="#contact" class="btn btn-outline" data-i18n="hero_btn_contact">Me contacter</a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/bloodjens1023" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+                        <a href="https://www.facebook.com/bloodjens1023/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+                        <a href="mailto:bloodjens32@gmail.com" aria-label="Email">Email</a>
+                        <a href="tel:+261385459780" aria-label="Téléphone">+261 38 54 597 80</a>
+                    </div>
+                </div>
+                <div class="hero-avatar">
+                    <div class="profile-showcase" data-tilt>
+                        <!-- Lueur d'aura tournante en arrière-plan -->
+                        <div class="profile-glow-ring"></div>
+                        
+                        <!-- Conteneur principal de la photo stylisée -->
+                        <div class="profile-card">
+                            <div class="profile-border-gradient">
+                                <div class="profile-inner-frame">
+                                    <img src="img/photo.jpg" alt="Jenny Fandresena" class="profile-photo-img" loading="eager">
+                                </div>
+                            </div>
+
+                            <!-- Badges flottants technologiques interactifs -->
+                            <div class="floating-badge badge-top-right">
+                                <span class="badge-icon">⚡</span>
+                                <span data-i18n="badge_fullstack">Full-Stack Web</span>
+                            </div>
+                            <div class="floating-badge badge-bottom-left">
+                                <span class="badge-pulse-dot"></span>
+                                <span data-i18n="badge_m2">M2 Informatique &bull; ITU</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section À propos -->
+        <section class="about section" id="about">
+            <div class="container">
+                <h2 class="section-title reveal" data-i18n="about_title">À propos de moi</h2>
+                <div class="about-grid">
+                    <div class="about-text reveal">
+                        <p class="about-lead" data-i18n="about_lead">
+                            Je m'appelle <strong>RAKOTOHASIMBOLA Hasiniaina Jenny Fandresena</strong>, Développeur Web Full-Stack basé à Antananarivo, Madagascar.
+                        </p>
+                        <p data-i18n="about_p1">
+                            Passionnée par le développement web, l'architecture logicielle et les nouvelles technologies, je conçois des solutions complètes alliant robustesse côté serveur et interfaces utilisateurs intuitives, dynamiques et modernes.
+                        </p>
+                        <p data-i18n="about_p2">
+                            Après avoir obtenu ma Licence en Informatique à l'Université ESMIA et réussi avec succès mon <strong>Master 1 à l'Université ITU (Information Technology University)</strong>, je poursuis actuellement mon <strong>Master 2 en Informatique</strong> où je prépare mon mémoire de fin d'études.
+                        </p>
+                        <div class="stats-grid">
+                            <div class="stat-card" data-tilt>
+                                <span class="stat-number">M2</span>
+                                <span class="stat-label" data-i18n="about_stat1_label">En cours · Université ITU</span>
+                            </div>
+                            <div class="stat-card" data-tilt>
+                                <span class="stat-number">M1</span>
+                                <span class="stat-label" data-i18n="about_stat2_label">Validé avec succès à l'ITU</span>
+                            </div>
+                            <div class="stat-card" data-tilt>
+                                <span class="stat-number">Full-Stack</span>
+                                <span class="stat-label" data-i18n="about_stat3_label">Frontend & Backend</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Parcours & Formations -->
+        <section class="education section" id="education">
+            <div class="container">
+                <h2 class="section-title reveal" data-i18n="edu_title">Parcours & Formations</h2>
+                <p class="section-subtitle reveal" data-i18n="edu_subtitle">Mon cursus académique en sciences informatiques et technologies.</p>
+                <div class="timeline-grid">
+                    <!-- Master 2 ITU -->
+                    <div class="timeline-card reveal" data-tilt>
+                        <div class="timeline-badge current" data-i18n="edu_badge_m2">Actuel &bull; 2025 - 2026</div>
+                        <h3><span data-i18n="edu_m2_title_text">Master 2 en Informatique</span> <span class="timeline-tag" data-i18n="edu_m2_tag">En préparation de mémoire</span></h3>
+                        <p class="timeline-institution" data-i18n="edu_m2_inst">Université ITU (Information Technology University) &middot; Madagascar</p>
+                        <p class="timeline-desc" data-i18n="edu_m2_desc">Spécialisation approfondie en génie logiciel et technologies avancées, rédaction et préparation active du mémoire de recherche.</p>
+                    </div>
+
+                    <!-- Master 1 ITU -->
+                    <div class="timeline-card reveal" data-tilt>
+                        <div class="timeline-badge success" data-i18n="edu_badge_m1">2024 - 2025 &bull; Validé</div>
+                        <h3><span data-i18n="edu_m1_title_text">Master 1 en Informatique</span> <span class="timeline-tag" data-i18n="edu_m1_tag">Réussi avec succès</span></h3>
+                        <p class="timeline-institution" data-i18n="edu_m1_inst">Université ITU (Information Technology University) &middot; Madagascar</p>
+                        <p class="timeline-desc" data-i18n="edu_m1_desc">Conception de systèmes d'information, bases de données avancées, architectures web distribuées et gestion de projets logiciels.</p>
+                    </div>
+
+                    <!-- Licence ESMIA -->
+                    <div class="timeline-card reveal" data-tilt>
+                        <div class="timeline-badge">2021 - 2024</div>
+                        <h3><span data-i18n="edu_licence_title_text">Licence en Informatique</span> <span class="timeline-tag" data-i18n="edu_licence_tag">Diplômée</span></h3>
+                        <p class="timeline-institution" data-i18n="edu_licence_inst">Université ESMIA &middot; Madagascar</p>
+                        <p class="timeline-desc" data-i18n="edu_licence_desc">Fondations solides en programmation orientée objet, algorithmique, développement web et administration de bases de données.</p>
+                    </div>
+
+                    <!-- Baccalauréat -->
+                    <div class="timeline-card reveal" data-tilt>
+                        <div class="timeline-badge">2019</div>
+                        <h3 data-i18n="edu_bac_title">Baccalauréat Scientifique</h3>
+                        <p class="timeline-institution" data-i18n="edu_bac_inst">Lycée Saint Pierre Malaza &middot; Madagascar</p>
+                        <p class="timeline-desc" data-i18n="edu_bac_desc">Formation scientifique générale, bases mathématiques et logiques.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Compétences -->
+        <section class="skills section" id="skills">
+            <div class="container">
+                <h2 class="section-title reveal" data-i18n="skills_title">Mes Compétences</h2>
+                <div class="skills-grid">
+                    <div class="skill-category reveal" data-tilt>
+                        <h3 data-i18n="skills_frontend">Frontend</h3>
+                        <div class="skill-tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">JavaScript (ES6+)</span>
+                            <span class="tag">React</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Tailwind CSS</span>
+                            <span class="tag">Svelte</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category reveal" data-tilt>
+                        <h3 data-i18n="skills_backend">Backend</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Django</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">SQL / SQLite</span>
+                            <span class="tag">MySQL</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category reveal" data-tilt>
+                        <h3 data-i18n="skills_tools">Outils & Environnements</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Git & GitHub</span>
+                            <span class="tag">VS Code</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Figma</span>
+                            <span class="tag">Postman</span>
+                            <span class="tag">PyQt</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Projets -->
+        <section class="projects section" id="projects">
+            <div class="container">
+                <h2 class="section-title reveal" data-i18n="projects_title">Mes Projets Réalisés</h2>
+                <div class="projects-grid">
+                    <!-- Projet 1 : CNI -->
+                    <article class="project-card reveal" data-tilt>
+                        <div class="project-img-wrapper">
+                            <img src="img/project-cni.jpg" alt="Digitalisation de la Délivrance de la CNI" class="project-img" loading="lazy">
+                            <div class="project-img-overlay"></div>
+                            <span class="project-category-tag">Svelte &bull; Django</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 data-i18n="proj1_title">Digitalisation de la Délivrance de la CNI</h3>
+                            <p data-i18n="proj1_desc">Plateforme complète conçue pour simplifier et digitaliser le processus de délivrance des Cartes Nationales d'Identité (CNI). Permet la demande en ligne, la vérification sécurisée des informations et le suivi de la livraison.</p>
+                            <div class="project-tags">
+                                <span>Svelte</span>
+                                <span>Django</span>
+                                <span>SQLite</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/bloodjens1023/local_identite.git" target="_blank" rel="noopener noreferrer" class="link-btn">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="action-btn-svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
+                                    <span data-i18n="proj_code_btn"><span>Code GitHub</span> &rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projet 2 : Gestion Bibliothèque -->
+                    <article class="project-card reveal" data-tilt>
+                        <div class="project-img-wrapper">
+                            <img src="img/project-bibliotheque.jpg" alt="Gestion de Bibliothèque" class="project-img" loading="lazy">
+                            <div class="project-img-overlay"></div>
+                            <span class="project-category-tag">Python &bull; PyQt</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 data-i18n="proj2_title">Gestion de Bibliothèque - Lycée Saint Pierre Malaza</h3>
+                            <p data-i18n="proj2_desc">Plateforme de gestion de bibliothèque numérique pour le Lycée Saint Pierre Malaza. Le système permet aux élèves et au personnel de gérer les prêts de livres, les retours et de consulter le catalogue en ligne.</p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>PyQt</span>
+                                <span>MySQL</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/bloodjens1023" target="_blank" rel="noopener noreferrer" class="link-btn">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="action-btn-svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
+                                    <span data-i18n="proj_code_btn"><span>Code GitHub</span> &rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projet 3 : Portfolio & Applications Web -->
+                    <article class="project-card reveal" data-tilt>
+                        <div class="project-img-wrapper">
+                            <img src="img/project-portfolio.jpg" alt="Portfolio Personnel" class="project-img" loading="lazy">
+                            <div class="project-img-overlay"></div>
+                            <span class="project-category-tag">React &bull; TypeScript</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 data-i18n="proj3_title">Portfolio Personnel & Expérimentations Web</h3>
+                            <p data-i18n="proj3_desc">Conception d'une interface web moderne, ultra-rapide et responsive intégrant des animations interactives, effets de perspective 3D et une charte graphique technique haute précision.</p>
+                            <div class="project-tags">
+                                <span>React</span>
+                                <span>TypeScript</span>
+                                <span>Tailwind CSS</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/bloodjens1023" target="_blank" rel="noopener noreferrer" class="link-btn">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="action-btn-svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
+                                    <span data-i18n="proj_code_btn"><span>Code GitHub</span> &rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Contact -->
+        <section class="contact section" id="contact">
+            <div class="container">
+                <h2 class="section-title reveal" data-i18n="contact_title">Contactez-moi</h2>
+                <p class="section-subtitle reveal" data-i18n="contact_subtitle">Un projet, une proposition ou une collaboration ? N'hésitez pas à me joindre.</p>
+                
+                <div class="contact-wrapper reveal">
+                    <!-- Informations directes de contact avec icônes SVG uniformes -->
+                    <div class="contact-info-list">
+                        <!-- Email -->
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon" aria-hidden="true">
+                                <svg class="contact-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 data-i18n="contact_email_title">Email</h4>
+                                <a href="mailto:bloodjens32@gmail.com">bloodjens32@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <!-- Téléphone -->
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon" aria-hidden="true">
+                                <svg class="contact-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 data-i18n="contact_phone_title">Téléphone</h4>
+                                <a href="tel:+261385459780">+261 38 54 597 80</a>
+                            </div>
+                        </div>
+
+                        <!-- Localisation -->
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon" aria-hidden="true">
+                                <svg class="contact-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 data-i18n="contact_loc_title">Localisation</h4>
+                                <p data-i18n="contact_loc_desc">Andoharanofotsy, Antananarivo, Madagascar<br><small style="color:var(--text-secondary)">lot IIIB 62 D</small></p>
+                            </div>
+                        </div>
+
+                        <!-- Réseaux Sociaux -->
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon" aria-hidden="true">
+                                <svg class="contact-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 data-i18n="contact_social_title">Réseaux Sociaux</h4>
+                                <div class="contact-social-pills">
+                                    <a href="https://github.com/bloodjens1023" target="_blank" rel="noopener noreferrer">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" class="social-pill-svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
+                                        <span>GitHub</span>
+                                    </a>
+                                    <a href="https://www.facebook.com/bloodjens1023/" target="_blank" rel="noopener noreferrer">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" class="social-pill-svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+                                        <span>Facebook</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire de contact -->
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name" data-i18n="form_name_label">Votre nom</label>
+                            <input type="text" id="name" name="name" placeholder="Ex: Jean Dupont" data-i18n-placeholder="form_name_ph" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="form_email_label">Votre email</label>
+                            <input type="email" id="email" name="email" placeholder="Ex: jean.dupont@email.com" data-i18n-placeholder="form_email_ph" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-i18n="form_message_label">Votre message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Bonjour Jenny, je souhaite échanger avec vous concernant..." data-i18n-placeholder="form_message_ph" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" data-i18n="form_submit_btn">Envoyer le message</button>
+                        <div class="form-status" id="form-status"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; <span id="current-year"></span> <span data-i18n="footer_rights">Jenny Fandresena (RAKOTOHASIMBOLA Hasiniaina). Tous droits réservés.</span></p>
+            <p class="footer-sub" data-i18n="footer_sub">Développeur Web Full-Stack &middot; Master 2 Informatique ITU Madagascar.</p>
+        </div>
+    </footer>
+
+    <!-- Librairie Three.js pour la 3D interactive -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
